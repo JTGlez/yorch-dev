@@ -1,17 +1,12 @@
+import { ReactNode } from 'react';
+import Link from 'next/link';
 import type { Metadata } from 'next'
-import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider";
 import { i18n } from '../../../i18.config';
 import Navbar from '@/components/Navbar';
-import Link from 'next/link';
-import { ReactNode } from 'react';
-
-export const fontSans = FontSans({
-    subsets: ["latin"],
-    variable: "--font-sans",
-})
+import { fontSans } from './fonts';
 
 export const metadata: Metadata = {
     title: 'JTGlez',

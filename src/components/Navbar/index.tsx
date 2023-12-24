@@ -1,12 +1,12 @@
 'use client'
-import * as React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import ModeToggle from "../ThemeToggle";
-import { Logo } from "./icons";
+import { motion, AnimatePresence } from "framer-motion";
 import { getLocaleStrings } from "@/localization";
 import LangToggle from '../LangToggle/index';
-import { motion, AnimatePresence} from "framer-motion";
+import ModeToggle from "../ThemeToggle";
+import { Logo } from "./icons";
 
 interface NavbarProps {
     lang: string;
@@ -14,8 +14,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ lang }) => {
 
-    const [isClicked, setIsClicked] = React.useState(false);
-
+    const [isClicked, setIsClicked] = useState(false);
     const strings = getLocaleStrings(lang);
 
     const menus = [

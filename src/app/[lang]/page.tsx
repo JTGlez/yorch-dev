@@ -1,17 +1,11 @@
 'use client'
-import * as React from "react";
-import ModeToggle from "@/components/ThemeToggle";
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import Link from "next/link";
-import { contact } from "@/image-path";
-import { subtitle, title } from "@/components/primitives";
-import { getLocaleStrings } from "@/localization";
 import { GithubIcon, LinkedinIcon } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button"
 import { motion } from "framer-motion";
-import LangToggle from "@/components/LangToggle";
-
+import { contact } from "@/image-path";
+import { title } from "@/components/primitives";
+import { getLocaleStrings } from "@/localization";
+import { Button } from "@/components/ui/button"
 
 export default function Home({ params }: { params: { lang: string } }) {
 
