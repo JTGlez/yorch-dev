@@ -1,0 +1,12 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "aboutme": "About Me",
+        "projects": "Projects",
+        "blog": "Blog"
+    },
+    "Start": {
+        "title": "Hi! My name is Jorge",
+        "job": "Full-Stack Dev"
+    }
+}

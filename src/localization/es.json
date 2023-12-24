@@ -1,0 +1,12 @@
+{
+    "Navbar": {
+        "home": "Inicio",
+        "aboutme": "Sobre Mi",
+        "projects": "Proyectos",
+        "blog": "Blog"
+    },
+    "Start": {
+        "title": "¡Hola! Soy Jorge",
+        "job": "Desarrollador Full-Stack"
+    }
+}

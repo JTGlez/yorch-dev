@@ -1,61 +1,62 @@
-"use client"
-
+'use client'
 import * as React from "react";
 import ModeToggle from "@/components/ThemeToggle";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
+import Link from "next/link";
 import { contact } from "@/image-path";
+import { subtitle, title } from "@/components/primitives";
+import { getLocaleStrings } from "@/localization";
+import { GithubIcon, LinkedinIcon } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button"
+import { motion } from "framer-motion";
+import LangToggle from "@/components/LangToggle";
 
-export default function Home() {
+
+export default function Home({ params }: { params: { lang: string } }) {
+
+  const strings = getLocaleStrings(params.lang);
 
   return (
     <>
-      <Navbar />
-      <div className="grid grid-cols-10 gap-4">
-			{/* Start sections */}
-			<section className="col-span-10 lg:col-span-7 flex flex-col items-center gap-4 py-8 md:py-10">
-				<div className="flex flex-row items-stretch gap-8">
-					<div className="w-[150px]">
-						<Image
-							className="rounded-full"
-							src={contact.src}
-							alt="lol"
-							width={300}
-							height={300}
-						/>
-					</div>
-					<div className="flex flex-col gap-5">
-						<div className="flex flex-col max-w-2xl text-left justify-center gap-4">
-							<h1 className={title()}>{strings.Start.title}</h1>
-							<h1 className={title({ color: "blue" })}>{strings.Start.job}</h1>
-						</div>
-						<div className="flex gap-3">
-							<Link
-								isExternal
-								className={buttonStyles({ variant: "bordered", radius: "full" })}
-								href={siteConfig.links.github}
-							>
-								<GithubIcon size={20} />
-								GitHub
-							</Link>
-							<Link
-								isExternal
-								className={buttonStyles({ variant: "bordered", radius: "full" })}
-								href={siteConfig.links.github}
-							>
-								<GithubIcon size={20} />
-								GitHub
-							</Link>
-						</div>
-					</div>
-				</div>
-			</section>
-			{/* Contact card section */}
-			<section className="hidden lg:col-span-3 lg:flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-				<ContactCard lang={params.lang} />
-			</section>
-		</div>
-      <ModeToggle />
+      {/* Start sections */}
+
+      <section className="flex flex-col gap-4 py-8 mt-4 md:py-10">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex flex-row items-center gap-6">
+            <div className="w-24 md:w-32 lg:w-40 xl:w-48">
+              <Image
+                className="rounded-full"
+                src={contact.src}
+                alt="lol"
+                width={200}
+                height={200}
+              />
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col text-left justify-center gap-4">
+                <h1 className={title({ size: "sm" })}>{strings.Start.title}</h1>
+                <h1 className={title({ color: "blue", size: "sm" })}>{strings.Start.job}</h1>
+              </div>
+              <div className="flex gap-3">
+                <Button>
+                  <GithubIcon className="mr-2 h-4 w-4" /> Github
+                </Button>
+                <Button>
+                  <LinkedinIcon className="mr-2 h-4 w-4" /> LinkedIn
+                </Button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+      {/* Contact card section */}
+      <section className="hidden lg:col-span-3 lg:flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      </section>
     </>
   )
 }

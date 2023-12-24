@@ -16,3 +16,17 @@ export const Logo: React.FC<{ size?: number }> = ({
         />
     </svg>
 );
+
+/* export const MXFlag: React.FC<{size?: number}> = ({
+    size = 24,
+    ...props
+}) => (
+
+);
+
+export const USFlag: React.FC<{size?: number}> = ({
+    size = 24,
+    ...props
+}) => (
+    
+); */
