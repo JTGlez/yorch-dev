@@ -12,10 +12,10 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
 
     return (
         <div className="bg-gray-100 dark:bg-gray-900">
-            <footer className="p-4rounded-lg shadow md:flex md:items-center md:justify-between md:p-6">
-                <div className="container flex flex-row items-center justify-between">
+            <footer className="p-4rounded-lg shadow md:flex md:items-center md:justify-between p-6">
+                <div className="container flex flex-col md:flex-row items-center text-center gap-2 justify-between">
                     <span
-                        className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 
+                        className="text-sm text-gray-500 sm:text-center dark:text-gray-400">©
                         {currentYear}
                         <a
                             href="https://github.com/JTGlez"
