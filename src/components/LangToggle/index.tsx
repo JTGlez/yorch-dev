@@ -24,7 +24,7 @@ export default function LangToggle() {
 
     return (
         <>
-            <div className='flex mb-4'>
+            <div className='flex'>
                 <Link
                     href={redirectedPathName(newLang)}
                     className='rounded-md border px-3 py-2 bg-gray-200 dark:bg-slate-800'

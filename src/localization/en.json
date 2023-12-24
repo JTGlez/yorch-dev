@@ -5,6 +5,9 @@
         "projects": "Projects",
         "blog": "Blog"
     },
+    "Footer": {
+        "credits": "All photo credits belong to their respective authors."
+    },
     "Start": {
         "title": "Hi! My name is Jorge",
         "job": "Full-Stack Dev"

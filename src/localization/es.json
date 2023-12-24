@@ -5,6 +5,9 @@
         "projects": "Proyectos",
         "blog": "Blog"
     },
+    "Footer": {
+        "credits": "Todos los créditos de las fotos pertenecen a sus respectivos autores."
+    },
     "Start": {
         "title": "¡Hola! Soy Jorge",
         "job": "Desarrollador Full-Stack"

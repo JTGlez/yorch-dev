@@ -40,7 +40,10 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
                 <div>
                     <Logo size={60} />
                 </div>
-                <div className="flex items-center gap-5 flex-row-reverse md:flex-row">
+                <div className="flex items-center gap-5 flex-row">
+                    <div className="hidden md:flex">
+                        <LangToggle />
+                    </div>
                     <div className={`hidden md:flex md:space-x-6 ${isClicked ? "block" : "hidden"}`}>
                         {menus.map((menu, index) => (
                             <Link key={index} href={`/${lang}${menu.path}`}>
@@ -82,7 +85,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
                                     </li>
                                 ))}
                             </ul>
-                            <LangToggle />
+                            <div className="mb-4">
+                                <LangToggle />
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}

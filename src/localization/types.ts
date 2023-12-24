@@ -4,6 +4,9 @@ export interface Locales {
 
 interface RootObject {
     Navbar: Navbar;
+    Footer: {
+        credits: string;
+    }
     Start: {
         title: string;
         job: string;
