@@ -1,0 +1,1 @@
+export { default as contact } from "./public/assets/images/contact.jpg";
