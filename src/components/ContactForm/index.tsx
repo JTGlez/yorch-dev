@@ -1,5 +1,4 @@
 "use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -20,9 +19,11 @@ import {
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet"
-
 import { getLocaleStrings } from "@/localization"
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
+import { useRef } from 'react';
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import axios from "axios"
 
 interface ContactFormProps {
     lang: string;
@@ -33,6 +34,8 @@ interface ContactFormProps {
 const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) => {
 
     const strings = getLocaleStrings(lang);
+    const { executeRecaptcha } = useGoogleReCaptcha();
+    const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
 
     const FormSchema = z.object({
         username: z.string().min(2, {
@@ -44,6 +47,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
         message: z.string().min(10, {
             message: "Message must be at least 10 characters.",
         }),
+        captchaToken: z.string().optional(),
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -61,19 +65,45 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
         console.log("Hola")
         const processedData = { ...data };
         console.log(processedData);
-    
-        // Send data to your API route
-        const response = await fetch('/api/discordForm', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(processedData),
-        });
-    
-        if (!response.ok) {
-            console.error('Failed to send message to Discord');
+
+        if (!executeRecaptcha) {
+            console.log("not available to execute recaptcha")
+            return;
         }
+
+        const gRecaptchaToken = await executeRecaptcha('inquirySubmit');
+
+        const response = await axios({
+            method: "post",
+            url: "/api/recaptchaSubmit",
+            data: {
+                gRecaptchaToken,
+            },
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response?.data?.success === true) {
+            console.log(`Success with score: ${response?.data?.score}`);
+            // Send data to your API route
+            console.log(processedData)
+            const responseDiscord = await fetch('/api/discordForm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(processedData),
+            });
+
+            if (!responseDiscord.ok) {
+                console.error('Failed to send message to Discord');
+            }
+        } else {
+            console.log(`Failure with score: ${response?.data?.score}`);
+        }
+
     }
 
     return (

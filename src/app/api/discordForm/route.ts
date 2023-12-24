@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import { buffer } from "stream/consumers";
 
 async function readStream(stream: ReadableStream<Uint8Array>): Promise<string> {
   let result = "";

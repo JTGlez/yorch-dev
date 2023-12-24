@@ -8,6 +8,7 @@ import { i18n } from '../../../i18.config';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { fontSans } from './fonts';
+import GoogleCaptchaWrapper from './GoogleCaptchaWrapper';
 
 export const metadata: Metadata = {
     title: 'JTGlez',
@@ -40,7 +41,9 @@ export default function RootLayout({
                     <div className='min-h-screen'>
                         <Navbar lang={params.lang} />
                         <main className="container">
-                            {children}
+                            <GoogleCaptchaWrapper>
+                                {children}
+                            </GoogleCaptchaWrapper>
                             <div className='flex justify-between'>
                                 <div className='mt-10'>
                                     Hola
