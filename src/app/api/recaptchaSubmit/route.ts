@@ -8,6 +8,8 @@ export async function POST(request: Request) {
 
   const { gRecaptchaToken } = postData;
 
+  console.log(gRecaptchaToken)
+
   let res;
 
   const formData = `secret=${secretKey}&response=${gRecaptchaToken}`;
