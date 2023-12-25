@@ -29,10 +29,13 @@ export async function POST(request: Request) {
   if (res && res.data?.success && res.data?.score > 0.5) {
     console.log("res.data?.score:", res.data?.score);
 
-    return NextResponse.json({
-      success: true,
-      score: res.data.score,
-    }, { status: 200 });
+    return NextResponse.json(
+      {
+        success: true,
+        score: res.data.score,
+      },
+      { status: 200 }
+    );
   } else {
     return NextResponse.json({ success: false }, { status: 400 });
   }
