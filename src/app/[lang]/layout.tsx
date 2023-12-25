@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
-import Link from 'next/link';
 import type { Metadata } from 'next'
-import { cn } from "@/lib/utils";
-import './globals.css'
-import { ThemeProvider } from "@/components/theme-provider";
 import { i18n } from '../../../i18.config';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { fontSans } from './fonts';
 import GoogleCaptchaWrapper from './GoogleCaptchaWrapper';
+import { cn } from "@/lib/utils";
+import './globals.css'
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
     title: 'JTGlez',
@@ -44,6 +44,7 @@ export default function RootLayout({
                             <GoogleCaptchaWrapper>
                                 {children}
                             </GoogleCaptchaWrapper>
+                            <Toaster />
                             <div className='flex justify-between'>
                                 <div className='mt-10'>
                                     Hola

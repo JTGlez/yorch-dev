@@ -1,7 +1,12 @@
 "use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { Dispatch, SetStateAction } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { getLocaleStrings } from "@/localization"
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -10,8 +15,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/form";
 import {
     Sheet,
     SheetContent,
@@ -19,19 +23,15 @@ import {
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet"
-import { getLocaleStrings } from "@/localization"
-import { Dispatch, SetStateAction, useState } from "react"
-import { useRef } from 'react';
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import axios from "axios"
+import { Textarea } from "../ui/textarea";
+import { toast, useToast } from "../ui/use-toast";
+import { Toaster } from "@/components/ui/toaster"
 
 interface ContactFormProps {
     lang: string;
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-
-//TODO: Clean this code plz and localization
 
 const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) => {
 
@@ -61,11 +61,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
     })
 
     const onSubmit = async (data: any) => {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log("Hola")
         const processedData = { ...data };
-        console.log(processedData);
 
         if (!executeRecaptcha) {
             console.log("not available to execute recaptcha")
@@ -73,8 +69,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
         }
 
         const gRecaptchaToken = await executeRecaptcha('inquirySubmit');
-
-        console.log(gRecaptchaToken)
 
         const response = await axios({
             method: "post",
@@ -100,24 +94,40 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
                 body: JSON.stringify(processedData),
             });
 
-            if (!responseDiscord.ok) {
+            if (responseDiscord.ok) {
+                console.log('Message sent to Discord');
+                toast({
+                    title: "¡Mensaje enviado!",
+                    description: "Me pondré en contacto contigo próximamente.",
+                })
+                setIsOpen(false);
+            } else {
                 console.error('Failed to send message to Discord');
+                toast({
+                    variant: "destructive",
+                    title: "Error",
+                    description: "No se pudo enviar el mensaje a Discord.",
+                })
             }
         } else {
             console.log(`Failure with score: ${response?.data?.score}`);
+            toast({
+                title: "Error",
+                description: "La verificación de reCAPTCHA falló.",
+            })
         }
     }
 
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetContent className="w-[400px]">
+            <SheetContent className="min-w-[420px]">
                 <SheetHeader>
                     <SheetTitle><span>Contacto</span></SheetTitle>
                     <SheetDescription>
                         <span>Envía un mensaje :)</span>
                     </SheetDescription>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                             {/* Name Field */}
                             <FormField
                                 control={form.control}
@@ -154,12 +164,30 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
                                     <FormItem>
                                         <FormLabel>Message</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="shadcn" {...field} />
+                                            <Textarea
+                                                placeholder="Tell us a little bit about yourself"
+                                                {...field}
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
+
                             />
+                            <div>
+                                <small className="text-xs text-gray-400">This site is protected by reCAPTCHA and the Google
+                                    <span className="inline-block">
+                                        <a
+                                            href="https://policies.google.com/privacy"
+                                            className="relative text-xs w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"> Privacy Policy</a>
+                                    </span> and&nbsp;
+                                    <span className="inline-block">
+                                        <a
+                                            href="https://policies.google.com/terms"
+                                            className="relative text-xs w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"> Terms of Service</a>
+                                    </span> apply.
+                                </small>
+                            </div>
                             <Button type="submit">Submit</Button>
                         </form>
                     </Form>

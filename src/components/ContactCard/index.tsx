@@ -1,18 +1,17 @@
+import { useState } from "react";
+import { CircleIcon, StarIcon } from "lucide-react";
+import { getLocaleStrings } from "@/localization";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import ContactForm from '../ContactForm/index';
 import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { getLocaleStrings } from "@/localization";
-import { Button } from "../ui/button";
-import { CircleIcon, StarIcon } from "lucide-react";
-import { Separator } from "../ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import ContactForm from '../ContactForm/index';
-import { useState } from "react";
 
 interface ContactCardProps {
     lang: string;
@@ -26,7 +25,6 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
     const handleShowForm = () => {
         setIsFormOpen(true);
     }
-    console.log(isFormOpen)
 
     // TODO: localization
 

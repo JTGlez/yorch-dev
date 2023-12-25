@@ -2,11 +2,11 @@
 import Image from "next/image";
 import { GithubIcon, LinkedinIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { contact } from "@/image-path";
 import { title } from "@/components/primitives";
 import { getLocaleStrings } from "@/localization";
 import { Button } from "@/components/ui/button";
 import ContactCard from "@/components/ContactCard";
+import { contact } from "@/image-path";
 
 export default function Home({ params }: { params: { lang: string } }) {
 
