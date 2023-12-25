@@ -37,7 +37,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
 
     const strings = getLocaleStrings(lang);
     const { executeRecaptcha } = useGoogleReCaptcha();
-    const [isCaptchaCompleted, setIsCaptchaCompleted] = useState(false);
 
     const FormSchema = z.object({
         username: z.string().min(2, {
@@ -75,6 +74,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
 
         const gRecaptchaToken = await executeRecaptcha('inquirySubmit');
 
+        console.log(gRecaptchaToken)
+
         const response = await axios({
             method: "post",
             url: "/api/recaptchaSubmit",
@@ -105,7 +106,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
         } else {
             console.log(`Failure with score: ${response?.data?.score}`);
         }
-
     }
 
     return (
