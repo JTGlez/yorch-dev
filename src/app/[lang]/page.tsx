@@ -7,7 +7,6 @@ import { title } from "@/components/primitives";
 import { getLocaleStrings } from "@/localization";
 import { Button } from "@/components/ui/button";
 import ContactCard from "@/components/ContactCard";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home({ params }: { params: { lang: string } }) {
 

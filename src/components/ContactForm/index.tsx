@@ -31,6 +31,8 @@ interface ContactFormProps {
     setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
+//TODO: Clean this code plz and localization
+
 const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) => {
 
     const strings = getLocaleStrings(lang);

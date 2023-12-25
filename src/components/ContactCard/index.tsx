@@ -28,6 +28,8 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
     }
     console.log(isFormOpen)
 
+    // TODO: localization
+
     return (
         <Card className="min-w-[350px] max-w-[500px]">
             <CardHeader className="grid items-start gap-4 space-y-0">

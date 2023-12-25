@@ -14,7 +14,6 @@ async function readStream(stream: ReadableStream<Uint8Array>): Promise<string> {
 
 export async function POST(req: NextRequest) {
   if (req.method === "POST") {
-    console.log(req);
     const rawBody = req.body ? await readStream(req.body) : null;
     const { username, email, message } = rawBody
       ? JSON.parse(rawBody.toString())
