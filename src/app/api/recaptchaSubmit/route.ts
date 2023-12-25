@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       }
     );
   } catch (e) {
-    return NextResponse.json({ success: false });
+    return NextResponse.json({ success: false }, { status: 500 });
   }
 
   if (res && res.data?.success && res.data?.score > 0.5) {
@@ -32,8 +32,8 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       score: res.data.score,
-    });
+    }, { status: 200 });
   } else {
-    return NextResponse.json({ success: false });
+    return NextResponse.json({ success: false }, { status: 400 });
   }
 }
