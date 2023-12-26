@@ -39,7 +39,9 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <div className='min-h-screen'>
+                        <nav className=''>
                         <Navbar lang={params.lang} />
+                        </nav>
                         <main className="container">
                             <GoogleCaptchaWrapper>
                                 {children}

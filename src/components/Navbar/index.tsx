@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
     };
 
     return (
-        <nav className="bg-gray-100 dark:bg-gray-900 border-b">
+        <nav className="bg-[rgba(255,255,255,0.5)] dark:bg-[rgba(0,0,0,0.5)] border-b">
             <div className="flex items-center container justify-between mx-auto md:px-8">
                 <div>
                     <Logo size={60} />

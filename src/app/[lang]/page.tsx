@@ -58,8 +58,7 @@ export default function Home({ params }: { params: { lang: string } }) {
             <ContactCard lang={params.lang} />
           </motion.div>
         </div>
-      </section>
-
+      </section>      
     </>
   )
 }
