@@ -82,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
                         >
                             <ul className="justify-center items-center my-6 space-y-6 md:flex md:space-x-6 md:space-y-6">
                                 {menus.map((menu, index) => (
-                                    <li key={index} className="text-gray-600 hover:text-gray-100">
+                                    <li key={index} className="text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">
                                         <Link href={`/${lang}${menu.path}`}>
                                             {menu.title}
                                         </Link>
