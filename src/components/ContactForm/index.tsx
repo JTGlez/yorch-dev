@@ -5,9 +5,11 @@ import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { getLocaleStrings } from "@/localization"
+import { getLocaleStrings } from "@/localization";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Textarea } from "../ui/textarea";
+import { toast } from "../ui/use-toast";
 import {
     Form,
     FormControl,
@@ -22,10 +24,7 @@ import {
     SheetDescription,
     SheetHeader,
     SheetTitle,
-} from "@/components/ui/sheet"
-import { Textarea } from "../ui/textarea";
-import { toast, useToast } from "../ui/use-toast";
-import { Toaster } from "@/components/ui/toaster"
+} from "@/components/ui/sheet";
 
 interface ContactFormProps {
     lang: string;
@@ -70,50 +69,54 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
 
         const gRecaptchaToken = await executeRecaptcha('inquirySubmit');
 
-        const response = await axios({
-            method: "post",
-            url: "/api/recaptchaSubmit",
-            data: {
-                gRecaptchaToken,
-            },
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-            },
-        });
-
-        if (response?.data?.success === true) {
-            console.log(`Success with score: ${response?.data?.score}`);
-            // Send data to your API route
-            console.log(processedData)
-            const responseDiscord = await fetch('/api/discordForm', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+        try {
+            const response = await axios({
+                method: "post",
+                url: "/api/recaptchaSubmit",
+                data: {
+                    gRecaptchaToken,
                 },
-                body: JSON.stringify(processedData),
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                },
             });
 
-            if (responseDiscord.ok) {
-                console.log('Message sent to Discord');
-                toast({
-                    title: "¡Mensaje enviado!",
-                    description: "Me pondré en contacto contigo próximamente.",
-                })
-                setIsOpen(false);
+            if (response?.data?.success === true) {
+
+                const responseDiscord = await fetch('/api/discordForm', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(processedData),
+                });
+
+                if (responseDiscord.ok) {
+                    toast({
+                        title: strings.ContactForm.form.sent,
+                        description: strings.ContactForm.form.sent2,
+                    })
+                    setIsOpen(false);
+                } else {
+                    toast({
+                        variant: "destructive",
+                        title: strings.ContactForm.form.error,
+                        description: strings.ContactForm.form.error2,
+                    })
+                }
             } else {
-                console.error('Failed to send message to Discord');
                 toast({
                     variant: "destructive",
-                    title: "Error",
-                    description: "No se pudo enviar el mensaje a Discord.",
+                    title: strings.ContactForm.recaptcha.error,
+                    description: strings.ContactForm.recaptcha.error2,
                 })
             }
-        } else {
-            console.log(`Failure with score: ${response?.data?.score}`);
+        } catch (error) {
             toast({
-                title: "Error",
-                description: "La verificación de reCAPTCHA falló.",
+                variant: "destructive",
+                title: strings.ContactForm.recaptcha.error,
+                description: strings.ContactForm.recaptcha.error2,
             })
         }
     }
@@ -122,9 +125,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetContent className="min-w-[420px]">
                 <SheetHeader>
-                    <SheetTitle><span>Contacto</span></SheetTitle>
+                    <SheetTitle><span>{strings.ContactForm.title}</span></SheetTitle>
                     <SheetDescription>
-                        <span>Envía un mensaje :)</span>
+                        <span>{strings.ContactForm.subtitle}</span>
+                        <br /><br />
+                        <span>{strings.ContactForm.subtitle2}</span>
                     </SheetDescription>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -134,9 +139,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
                                 name="username"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Username</FormLabel>
+                                        <FormLabel>{strings.ContactForm.form.name}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="shadcn" {...field} />
+                                            <Input {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -148,9 +153,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel>{strings.ContactForm.form.email}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="shadcn" {...field} type="email" />
+                                            <Input {...field} type="email" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -162,12 +167,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
                                 name="message"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Message</FormLabel>
+                                        <FormLabel>{strings.ContactForm.form.message}</FormLabel>
                                         <FormControl>
-                                            <Textarea
-                                                placeholder="Tell us a little bit about yourself"
-                                                {...field}
-                                            />
+                                            <Textarea {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -175,17 +177,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
 
                             />
                             <div>
-                                <small className="text-xs text-gray-400">This site is protected by reCAPTCHA and the Google
+                                <small className="text-xs text-gray-400">{strings.ContactForm.recaptcha.par1}
                                     <span className="inline-block">
                                         <a
                                             href="https://policies.google.com/privacy"
-                                            className="relative text-xs w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"> Privacy Policy</a>
-                                    </span> and&nbsp;
+                                            className="relative text-xs w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"> {strings.ContactForm.recaptcha.par2}</a>
+                                    </span> {strings.ContactForm.recaptcha.par3}&nbsp;
                                     <span className="inline-block">
                                         <a
                                             href="https://policies.google.com/terms"
-                                            className="relative text-xs w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"> Terms of Service</a>
-                                    </span> apply.
+                                            className="relative text-xs w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"> {strings.ContactForm.recaptcha.par4}</a>
+                                    </span> {strings.ContactForm.recaptcha.par5}
                                 </small>
                             </div>
                             <Button type="submit">Submit</Button>

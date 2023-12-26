@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CircleIcon, StarIcon } from "lucide-react";
+import { CircleIcon, DatabaseIcon } from "lucide-react";
 import { getLocaleStrings } from "@/localization";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -26,8 +26,6 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
         setIsFormOpen(true);
     }
 
-    // TODO: localization
-
     return (
         <Card className="min-w-[350px] max-w-[500px]">
             <CardHeader className="grid items-start gap-4 space-y-0">
@@ -40,14 +38,18 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
                             </Avatar>
                             <CardTitle><span className="text-2xl">JTGlez</span></CardTitle>
                         </div>
-                        <Button variant="secondary" onClick={handleShowForm}><span>Contacto</span></Button>
-                        <ContactForm lang={lang} isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
+                        <Button variant="secondary" onClick={handleShowForm}><span>{strings.ContactForm.title}</span></Button>
+                        <ContactForm
+                            lang={lang}
+                            isOpen={isFormOpen}
+                            setIsOpen={setIsFormOpen}
+                        />
                     </div>
-
                     <Separator />
-                    <CardDescription className="">
-                        <span>I'm a student of Computer Engineering at FI UNAM. My passion lies in AI-based algorithms, data analytics, databases, and blockchain, and I keep myself up-to-date with the latest advancements in mainstream CPUs and GPUs.
-                        </span>
+                    <CardDescription>
+                        <span>{strings.ContactCard.description.par1}</span>
+                        <br /><br />
+                        <span>{strings.ContactCard.description.par2}</span>
                     </CardDescription>
                 </div>
             </CardHeader>
@@ -58,10 +60,13 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
                         <span>TypeScript</span>
                     </div>
                     <div className="flex items-center">
-                        <StarIcon className="mr-1 h-3 w-3" />
-                        <span>20k</span>
+                        <CircleIcon className="mr-1 h-3 w-3 fill-yellow-400 text-yellow-400" />
+                        <span>Python</span>
                     </div>
-                    <div><span>Updated April 2023</span></div>
+                    <div className="flex items-center">
+                        <DatabaseIcon className="mr-1 h-3 w-3" />
+                        <span>SQL</span>
+                    </div>
                 </div>
             </CardContent>
         </Card>

@@ -20,7 +20,7 @@ export default function LangToggle() {
 
     // Returns the svg flag for the toggle icon using the current lang in the path
     const newLang = lang === 'en' ? 'es' : 'en';
-    const flag = lang === 'en' ? mxflag : usflag;
+    const flag = lang === 'es' ? mxflag : usflag;
 
     return (
         <>

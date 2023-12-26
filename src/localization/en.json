@@ -11,5 +11,36 @@
     "Start": {
         "title": "Hi! My name is Jorge",
         "job": "Full-Stack Dev"
+    },
+    "ContactCard": {
+        "button": "Contact",
+        "description": {
+            "par1": "Hello! I'm Jorge, a 10th semester student of Computer Engineering at the School of Engineering, UNAM. I have knowledge of web development using React.js and Next.js, RESTful APIs (Node.js, Flask), and database modeling (MySQL, PostgreSQL).",
+            "par2": "Additionally, I possess practical expertise in deploying applications and services using AWS and Google Cloud."
+        }
+    },
+    "ContactForm": {
+        "title": "Contact",
+        "subtitle": "Would you like to get in touch with me? 👋",
+        "subtitle2": "Send this form and I'll contact you ASAP.",
+        "form": {
+            "name": "Name",
+            "username": "Discord User",
+            "email": "Email",
+            "message": "Message",
+            "sent": "Message sent!",
+            "sent2": "I'll contact you ASAP :)",
+            "error": "Error!",
+            "error2": "Message couldn't be sent :( Please try again."
+        },
+        "recaptcha": {
+            "par1": "This site is protected by reCAPTCHA and the Google",
+            "par2": "Privacy Policy",
+            "par3": "and",
+            "par4": "Terms of Service",
+            "par5": "apply.",
+            "error": "Error!",
+            "error2": "reCAPTCHA failed. Please try again later."
+        }
     }
 }

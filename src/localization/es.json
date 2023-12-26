@@ -11,5 +11,36 @@
     "Start": {
         "title": "¡Hola! Soy Jorge",
         "job": "Desarrollador Full-Stack"
+    },
+    "ContactCard": {
+        "button": "Contacto",
+        "description": {
+            "par1": "¡Hola! Soy Jorge, un estudiante de décimo semestre de Ingeniería en Computación en la Facultad de Ingeniería de la UNAM. Tengo conocimientos en desarrollo web utilizando React.js y Next.js, API REST (Node.js, Flask) y modelado de bases de datos (MySQL, PostgreSQL).",
+            "par2": "Además, poseo experiencia práctica en la implementación de aplicaciones y servicios por medio de AWS y Google Cloud."
+        }
+    },
+    "ContactForm": {
+        "title": "Contacto",
+        "subtitle": "¿Te gustaría ponerte en contacto conmigo? 👋",
+        "subtitle2": "Envía este formulario y me pondré en contacto contigo lo antes posible.",
+        "form": {
+            "name": "Nombre",
+            "username": "Usuario de Discord",
+            "email": "Correo electrónico",
+            "message": "Mensaje",
+            "sent": "¡Mensaje enviado!",
+            "sent2": "Me pondré en contacto próximamente :)",
+            "error": "¡Error!",
+            "error2": "No pudo enviarse el mensaje :( Por favor intenta de nuevo."
+        },
+        "recaptcha": {
+            "par1": "Este sitio está protegido por reCAPTCHA y la",
+            "par2": "Política de privacidad",
+            "par3": "de Google y",
+            "par4": "Condiciones del servicio",
+            "par5": "se aplican.",
+            "error": "¡Error!",
+            "error2": "La verificación reCAPTCHA falló. Por favor inténtalo más tarde."
+        }
     }
 }

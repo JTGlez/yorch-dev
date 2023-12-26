@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
     };
 
     return (
-        <nav className="bg-[rgba(255,255,255,0.5)] dark:bg-[rgba(0,0,0,0.5)] border-b">
+        <nav className="bg-neutral-50 dark:bg-[rgba(0,0,0,0.5)] border-b">
             <div className="flex items-center container justify-between mx-auto md:px-8">
                 <div>
                     <Logo size={60} />
@@ -46,7 +46,11 @@ const Navbar: React.FC<NavbarProps> = ({ lang }) => {
                     </div>
                     <div className={`hidden md:flex md:space-x-6 ${isClicked ? "block" : "hidden"}`}>
                         {menus.map((menu, index) => (
-                            <Link key={index} href={`/${lang}${menu.path}`}>
+                            <Link
+                                className="relative  w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-gradient-to-r after:from-[#5EA2EF] after:to-[#0072F5] after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left"
+                                key={index}
+                                href={`/${lang}${menu.path}`}
+                            >
                                 {menu.title}
                             </Link>
                         ))}

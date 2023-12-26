@@ -39,12 +39,16 @@ export default function Home({ params }: { params: { lang: string } }) {
               </div>
               {/* Social Networks*/}
               <div className="flex gap-3 justify-center lg:justify-start">
-                <Button variant="outline">
-                  <GithubIcon className="mr-2 h-4 w-4" /> <span>Github</span>
-                </Button>
-                <Button variant="outline">
-                  <LinkedinIcon className="mr-2 h-4 w-4" /> <span>LinkedIn</span>
-                </Button>
+                <a href="https://github.com/JTGlez" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">
+                    <GithubIcon className="mr-2 h-4 w-4" /> <span>Github</span>
+                  </Button>
+                </a>
+                <a href="https://linkedin.com/in/jtglez" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">
+                    <LinkedinIcon className="mr-2 h-4 w-4" /> <span>LinkedIn</span>
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -58,7 +62,7 @@ export default function Home({ params }: { params: { lang: string } }) {
             <ContactCard lang={params.lang} />
           </motion.div>
         </div>
-      </section>      
+      </section>
     </>
   )
 }
