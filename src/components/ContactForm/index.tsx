@@ -123,7 +123,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
 
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetContent className="w-full sm:min-w-[420px]">
+            <SheetContent className="sm:min-w-[420px]">
                 <SheetHeader>
                     <SheetTitle><span>{strings.ContactForm.title}</span></SheetTitle>
                     <SheetDescription>
