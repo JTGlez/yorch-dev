@@ -6,6 +6,7 @@ import { title } from "@/components/primitives";
 import { getLocaleStrings } from "@/localization";
 import { Button } from "@/components/ui/button";
 import ContactCard from "@/components/ContactCard";
+import ContentCard from "@/components/ContentCard";
 import { contact } from "@/image-path";
 
 export default function Home({ params }: { params: { lang: string } }) {
@@ -15,11 +16,12 @@ export default function Home({ params }: { params: { lang: string } }) {
   return (
     <>
       {/* Start sections */}
-      <section className="flex flex-row justify-center lg:justify-between py-16 items-center">
+      <section className="flex flex-col lg:flex-row py-16 items-center gap-10 sm-gap:0">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="w-full lg:w-[60%]"
         >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="w-50 lg:w-40 xl:w-48 order-first lg:order-first">
@@ -53,16 +55,74 @@ export default function Home({ params }: { params: { lang: string } }) {
             </div>
           </div>
         </motion.div>
-        <div className="hidden lg:flex">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <ContactCard lang={params.lang} />
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full lg:w-[40%]"
+        >
+          <ContactCard lang={params.lang} />
+        </motion.div>
       </section>
+
+      {/* Start sections */}
+      <section className="flex flex-col lg:flex-row py-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full lg:w-[60%]"
+
+        >
+          <h2>Proyectos</h2>
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <ContentCard />
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full lg:w-[40%]"
+
+        >
+          <h2>Blog</h2>
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <ContentCard />
+          </div>
+        </motion.div>
+      </section>
+
+
+      {/* Project and Blog Cards */}
+      <section className="grid grid-cols-2 gap-4 py-16 items-center" style={{ gridTemplateColumns: "3fr 2.5fr" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2>Proyectos</h2>
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <ContentCard />
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2>Blog</h2>
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <ContentCard />
+          </div>
+        </motion.div>
+      </section>
+
+
+
+
+
     </>
   )
 }

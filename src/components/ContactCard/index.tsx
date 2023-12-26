@@ -27,7 +27,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
     }
 
     return (
-        <Card className="min-w-[350px] max-w-[500px]">
+        <Card className="w-full">
             <CardHeader className="grid items-start gap-4 space-y-0">
                 <div className="space-y-3">
                     <div className="flex flex-row justify-between">

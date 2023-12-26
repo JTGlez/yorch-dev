@@ -123,7 +123,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
 
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetContent className="min-w-[420px]">
+            <SheetContent className="w-full sm:min-w-[420px]">
                 <SheetHeader>
                     <SheetTitle><span>{strings.ContactForm.title}</span></SheetTitle>
                     <SheetDescription>
@@ -174,7 +174,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang, isOpen, setIsOpen }) =>
                                         <FormMessage />
                                     </FormItem>
                                 )}
-
                             />
                             <div>
                                 <small className="text-xs text-gray-400">{strings.ContactForm.recaptcha.par1}
