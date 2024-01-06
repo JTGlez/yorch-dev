@@ -10,9 +10,10 @@ export default function ModeToggle() {
         let newTheme;
         if (theme === 'system') {
             const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            newTheme = prefersDarkMode ? 'dark' : 'light';
+            newTheme = prefersDarkMode ? 'light' : 'dark';
+            console.log(newTheme)
         } else {
-            newTheme = theme === 'dark' ? 'light' : 'dark';
+            newTheme = theme === 'light' ? 'dark' : 'light';
         }
         setTheme(newTheme);
     }
