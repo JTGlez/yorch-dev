@@ -5,17 +5,14 @@ import { Button } from "@/components/ui/button"
 
 export default function ModeToggle() {
     const { theme, setTheme } = useTheme();
-    console.log(theme)
 
     const toggleTheme = () => {
         let newTheme;
         if (theme === 'system') {
             const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
             newTheme = prefersDarkMode ? 'light' : 'dark';
-            console.log(newTheme)
         } else {
             newTheme = theme === 'light' ? 'dark' : 'light';
-            console.log(newTheme)
         }
         setTheme(newTheme);
     }
