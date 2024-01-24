@@ -11,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
     const strings = getLocaleStrings(lang);
 
     return (
-        <footer className=" bg-gray-100 dark:bg-zinc-900 md:flex md:items-center md:justify-between p-6">
+        <footer className=" bg-gray-100 dark:bg-zinc-900 md:flex md:items-center md:justify-between p-6 opacity-100 xl:opacity-35">
             <div className="container flex flex-col md:flex-row items-center text-center gap-2 justify-between">
                 <span
                     className="text-sm text-gray-500 sm:text-center dark:text-gray-400">©

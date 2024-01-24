@@ -71,7 +71,7 @@
   display: grid;
   grid-template-columns: 60% auto;
   margin: 0 auto;
-  row-gap: 2rem;
+  row-gap: 1.5rem;
 }
 
 .grid-layout-cards {
@@ -135,5 +135,16 @@
     grid-template-columns: 1fr;
     /*Add a separation between columns*/
     row-gap: 2rem;
+  }
+}
+
+@keyframes wave {
+  0% {
+    background-position-x: 1000px;
+    z-index: -1;
+  }
+  100% {
+    background-position-x: 0px;
+    z-index: -1;
   }
 }

@@ -9,6 +9,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster"
+import AnimatedWave from '@/components/AnimatedWave';
 
 export const metadata: Metadata = {
     title: 'JTGlez',
@@ -40,7 +41,7 @@ export default function RootLayout({
                 >
                     <div className='min-h-screen'>
                         <nav className=''>
-                        <Navbar lang={params.lang} />
+                            <Navbar lang={params.lang} />
                         </nav>
                         <main className="container">
                             <GoogleCaptchaWrapper>
@@ -48,7 +49,30 @@ export default function RootLayout({
                             </GoogleCaptchaWrapper>
                             <Toaster />
                         </main>
-                        <div className='sticky top-[100vh]'>
+
+                        <div className='hidden xl:block' style={{ position: "relative", marginTop: '0rem' }}>
+                            <AnimatedWave
+                                color={"#0072F5"}
+                                animationDuration="10s"
+                                opacity={"0.8"}
+                            />
+                            <AnimatedWave
+                                color={"#0072F5"}
+                                animationDuration="15s"
+                                opacity={"0.5"}
+                            />
+                            <AnimatedWave
+                                color={"#0072F5"}
+                                animationDirection="reverse"
+                                animationDuration="20s"
+                                opacity={"0.2"}
+                            />
+                            <div className='block sticky top-[100vh]'>
+                                <Footer lang={params.lang} />
+                            </div>
+
+                        </div>
+                        <div className='block xl:hidden sticky top-[100vh]'>
                             <Footer lang={params.lang} />
                         </div>
                     </div>

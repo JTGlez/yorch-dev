@@ -16,7 +16,7 @@ export default function Home({ params }: { params: { lang: string } }) {
 
   return (
     <>
-      <section className="grid-layout py-16">
+      <section className="grid-layout py-14">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
