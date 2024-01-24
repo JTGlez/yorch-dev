@@ -21,6 +21,8 @@ import Autoplay from "embla-carousel-autoplay"
 import { LogInIcon } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
+import { motion } from "framer-motion";
+import { subtitle } from "@/components/primitives";
 
 interface ContentCardProps {
 
@@ -34,31 +36,40 @@ const ContentCard: React.FC<ContentCardProps> = ({ }) => {
     return (
 
         <>
-            <Carousel
-                plugins={[plugin.current]}
-                className="w-full max-w-xs"
-                onMouseEnter={plugin.current.stop}
-                onMouseLeave={plugin.current.reset}
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col gap-4 items-center lg:items-start "
             >
-                <CarouselContent>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <CarouselItem key={index}>
-                            <div className="w-80 p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md ">
-                                <img className="w-full h-40 object-cover rounded-t-lg" alt="Card Image" src="https://via.placeholder.com/150" />
-                                <div className="p-4">
-                                    <h2 className="text-xl  font-semibold">Beautiful Card</h2>
-                                    <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ante sit amet tellus ornare tincidunt.</p>
-                                    <div className="flex justify-between items-center mt-4">
-                                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Learn More</button>
+                <h1 className={subtitle({ color: 'blue' })}>Projects</h1>
+                <div className="flex flex-col w-[100%] lg:flex-row items-center gap-4 justify-center"></div>
+                <Carousel
+                    plugins={[plugin.current]}
+                    className="w-full max-w-xs"
+                    onMouseEnter={plugin.current.stop}
+                    onMouseLeave={plugin.current.reset}
+                >
+                    <CarouselContent>
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <CarouselItem key={index}>
+                                <div className="w-80 p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md ">
+                                    <img className="w-full h-40 object-cover rounded-t-lg" alt="Card Image" src="https://via.placeholder.com/150" />
+                                    <div className="p-4">
+                                        <h2 className="text-xl  font-semibold">Beautiful Card</h2>
+                                        <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ante sit amet tellus ornare tincidunt.</p>
+                                        <div className="flex justify-between items-center mt-4">
+                                            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Learn More</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </motion.div>
         </>
 
 
