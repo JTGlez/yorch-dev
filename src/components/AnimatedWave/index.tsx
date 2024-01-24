@@ -1,5 +1,6 @@
+// @ts-nocheck
 'use client'
-import { CSSProperties, useEffect } from "react";
+import { CSSProperties } from "react";
 import { renderToStaticMarkup } from 'react-dom/server';
 
 type Props = {

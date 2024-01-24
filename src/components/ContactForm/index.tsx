@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client"
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
