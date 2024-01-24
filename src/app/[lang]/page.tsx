@@ -7,10 +7,11 @@ import { getLocaleStrings } from "@/localization";
 import { Button } from "@/components/ui/button";
 import ContactCard from "@/components/ContactCard";
 import ContentCard from "@/components/ContentCard";
-import { contact } from "@/image-path";
+import { contact, efset, scrum } from "@/image-path";
 import SwiperCard from "@/components/SwiperCard";
 import PhotoTitle from "@/components/PhotoTitle";
 import { airline, mining, journal, soon } from "@/image-path";
+import { google, oracleone } from "@/image-path";
 
 export default function Home({ params }: { params: { lang: string } }) {
 
@@ -32,6 +33,30 @@ export default function Home({ params }: { params: { lang: string } }) {
     }
   ];
 
+  const staticCerts = [
+    {
+      image: google.src,
+      title: 'Google Career Certificates',
+      description: 'Data Analytics',
+    },
+    {
+      image: oracleone.src,
+      title: 'Oracle ONE',
+      description: 'Front-End Development',
+    },
+    {
+      image: scrum.src,
+      title: 'Scrum Fundamentals',
+      description: 'Accreditation Body for Scrum and Agile',
+    },
+    {
+      image: efset.src,
+      title: 'EFSET English Certificate',
+      description: 'C2 Proficient (91/100)',
+    }
+  ];
+
+
   const mockContent = Array.from({ length: 1 }, (_, i) => ({
     image: soon.src,
     title: `Soon!`,
@@ -50,7 +75,8 @@ export default function Home({ params }: { params: { lang: string } }) {
           <ContentCard title="Blog" content={mockContent} />
         </section>
 
-        <SwiperCard />
+        <SwiperCard title="Certifications" content={staticCerts} />
+
       </section>
     </>
   )

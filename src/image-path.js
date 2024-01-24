@@ -5,3 +5,7 @@ export { default as airline } from "../public/assets/img/airline.png";
 export { default as mining } from "../public/assets/img/mining.png";
 export { default as journal } from "../public/assets/img/journal.png";
 export { default as soon } from "../public/assets/img/soon.png";
+export { default as google } from "../public/assets/img/google.png";
+export { default as oracleone } from "../public/assets/img/oracleone.png";
+export { default as scrum } from "../public/assets/img/scrum.png";
+export { default as efset } from "../public/assets/img/efset.png";
