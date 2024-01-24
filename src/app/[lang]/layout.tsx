@@ -67,7 +67,7 @@ export default function RootLayout({
                                 animationDuration="20s"
                                 opacity={"0.2"}
                             />
-                            <div className='block sticky top-[100vh]'>
+                            <div className='mt-4 block sticky top-[100vh]'>
                                 <Footer lang={params.lang} />
                             </div>
 

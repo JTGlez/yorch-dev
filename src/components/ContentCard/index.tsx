@@ -25,16 +25,16 @@ import { motion } from "framer-motion";
 import { subtitle } from "@/components/primitives";
 
 interface ContentCardProps {
-
+    title: string;
+    content: { image: string; title: string; description: string; }[];
 }
 
 
-const ContentCard: React.FC<ContentCardProps> = ({ }) => {
+const ContentCard: React.FC<ContentCardProps> = ({ title, content }) => {
 
     const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
 
     return (
-
         <>
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -42,8 +42,7 @@ const ContentCard: React.FC<ContentCardProps> = ({ }) => {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col gap-4 items-center lg:items-start "
             >
-                <h1 className={subtitle({ color: 'blue' })}>Projects</h1>
-                <div className="flex flex-col w-[100%] lg:flex-row items-center gap-4 justify-center"></div>
+                <h1 className={subtitle({ color: 'blue' })}>{title}</h1>
                 <Carousel
                     plugins={[plugin.current]}
                     className="w-full max-w-xs"
@@ -51,13 +50,13 @@ const ContentCard: React.FC<ContentCardProps> = ({ }) => {
                     onMouseLeave={plugin.current.reset}
                 >
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                        {content.map((_, index) => (
                             <CarouselItem key={index}>
-                                <div className="w-80 p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md ">
-                                    <img className="w-full h-40 object-cover rounded-t-lg" alt="Card Image" src="https://via.placeholder.com/150" />
+                                <div className="w-80 h-[25rem] p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md border-[1px] ">
+                                    <img className="w-full h-40 object-cover rounded-t-lg" alt="Card Image" src={_.image} />
                                     <div className="p-4">
-                                        <h2 className="text-xl  font-semibold">Beautiful Card</h2>
-                                        <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ante sit amet tellus ornare tincidunt.</p>
+                                        <h2 className="text-xl mb-2 font-semibold">{_.title}</h2>
+                                        <p className="text-gray-600">{_.description}</p>
                                         <div className="flex justify-between items-center mt-4">
                                             <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Learn More</button>
                                         </div>

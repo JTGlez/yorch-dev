@@ -26,11 +26,9 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-4 xl:gap-16 items-start justify-start"
+            className="flex flex-col gap-4 xl:gap-16 "
         >
             <h1 className={subtitle({ color: 'blue' })}>Certifications</h1>
-            <div className="flex flex-col w-[100%] lg:flex-row items-end gap-4">
-
             <Swiper
                 effect={'coverflow'}
                 grabCursor={true}
@@ -71,11 +69,7 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ }) => {
                 <SwiperSlide>
                     <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
                 </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                </SwiperSlide>
             </Swiper>
-        </div>
         </motion.div >
     )
 }
