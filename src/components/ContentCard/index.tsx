@@ -9,40 +9,60 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+
 import { LogInIcon } from "lucide-react";
 import Image from "next/image";
+import { useRef } from "react";
 
 interface ContentCardProps {
 
 }
 
+
 const ContentCard: React.FC<ContentCardProps> = ({ }) => {
 
+    const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
+
     return (
-        <Card className="w-full md:w-[350px] bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
-            <CardHeader className="relative">
-                <Image
-                    src="https://jtglez.github.io/Portfolio/assets/img/crypto.PNG"
-                    alt="Elegant Watch"
-                    className="w-full h-48 object-cover object-center transition duration-300 ease-in-out"
-                    width={300}
-                    height={300}
-                />
-            </CardHeader>
-            <CardContent className="p-4">
-                <CardTitle className="text-xl font-semibold mb-2">CryptoCypher</CardTitle>
-                <CardDescription className="text-gray-700 mb-4">
-                    Text Encryptor and Decryptor with Substitution, AES-ECB, and 3DES.
-                </CardDescription>
-            </CardContent>
-            <CardFooter className="p-4 bg-gray-100">
-                <Button className="w-full bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out">
-                    <LogInIcon className="mr-2" /> Try it!
-                </Button>
-            </CardFooter>
-        </Card>
+
+        <>
+            <Carousel
+                plugins={[plugin.current]}
+                className="w-full max-w-xs"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
+            >
+                <CarouselContent>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                        <CarouselItem key={index}>
+                            <div className="w-80 p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md ">
+                                <img className="w-full h-40 object-cover rounded-t-lg" alt="Card Image" src="https://via.placeholder.com/150" />
+                                <div className="p-4">
+                                    <h2 className="text-xl  font-semibold">Beautiful Card</h2>
+                                    <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ante sit amet tellus ornare tincidunt.</p>
+                                    <div className="flex justify-between items-center mt-4">
+                                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Learn More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+            </Carousel>
+        </>
+
+
     )
 }
-
 
 export default ContentCard;

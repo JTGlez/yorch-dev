@@ -47,12 +47,6 @@ export default function RootLayout({
                                 {children}
                             </GoogleCaptchaWrapper>
                             <Toaster />
-                            <div className='flex justify-between'>
-                                <div className='mt-10'>
-                                    Hola
-                                </div>
-                                <div>Adios</div>
-                            </div>
                         </main>
                         <div className='sticky top-[100vh]'>
                             <Footer lang={params.lang} />
