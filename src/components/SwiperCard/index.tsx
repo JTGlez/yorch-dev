@@ -45,7 +45,6 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ title, content }) => {
                 modules={[EffectCoverflow, Pagination]}
                 className="mySwiper h-[22rem] max-w-[34rem]"
             >
-
                 {
                     content.map((item) => {
                         return (

@@ -114,6 +114,21 @@
   }
 }
 
+|@media (min-width: 1024px) {
+  .grid-layout-cards {
+    grid-template-columns: repeat(3, auto);
+    align-items: center !important;
+    justify-content: center;
+    column-gap: 4rem;
+
+    /*Add a separation between columns*/
+  }
+
+  .swiper-wrapper {
+    width: 60% !important; 
+  }
+}
+
 @media (min-width: 1280px) {
   .grid-layout-cards {
     grid-template-columns: repeat(2, auto);

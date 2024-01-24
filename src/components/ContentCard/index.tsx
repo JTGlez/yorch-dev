@@ -40,7 +40,7 @@ const ContentCard: React.FC<ContentCardProps> = ({ title, content }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col gap-4 items-center lg:items-start "
+                className="flex flex-col gap-4 items-center xl:items-start "
             >
                 <h1 className={subtitle({ color: 'blue' })}>{title}</h1>
                 <Carousel
