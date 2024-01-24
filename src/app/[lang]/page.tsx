@@ -15,6 +15,7 @@ import { google, oracleone } from "@/image-path";
 
 export default function Home({ params }: { params: { lang: string } }) {
 
+  // TODO: Add final content from Headless CMS
   const staticProjects = [
     {
       image: mining.src,
@@ -71,7 +72,7 @@ export default function Home({ params }: { params: { lang: string } }) {
         <ContactCard lang={params.lang} />
 
         <section className="grid-layout-cards">
-          <ContentCard title={'Projects'} content={staticProjects} />
+          <ContentCard title={'Projects'} content={staticProjects} isProject />
           <ContentCard title="Blog" content={mockContent} />
         </section>
 

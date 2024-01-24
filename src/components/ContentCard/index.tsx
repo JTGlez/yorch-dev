@@ -26,11 +26,12 @@ import { subtitle } from "@/components/primitives";
 
 interface ContentCardProps {
     title: string;
+    isProject?: boolean;
     content: { image: string; title: string; description: string; }[];
 }
 
 
-const ContentCard: React.FC<ContentCardProps> = ({ title, content }) => {
+const ContentCard: React.FC<ContentCardProps> = ({ title, content, isProject }) => {
 
     const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
 
@@ -55,11 +56,21 @@ const ContentCard: React.FC<ContentCardProps> = ({ title, content }) => {
                                 <div className="w-80 h-[25rem] p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-md border-[1px] ">
                                     <img className="w-full h-40 object-cover rounded-t-lg" alt="Card Image" src={_.image} />
                                     <div className="p-4">
-                                        <h2 className="text-xl mb-2 font-semibold">{_.title}</h2>
-                                        <p className="text-gray-600">{_.description}</p>
-                                        <div className="flex justify-between items-center mt-4">
-                                            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Learn More</button>
+                                        <div className="h-[10rem] overflow-auto"> {/* Limita el tamaño del texto */}
+                                            <h2 className="text-xl mb-2 font-semibold">{_.title}</h2>
+                                            <p className="text-gray-600">{_.description}</p>
                                         </div>
+
+                                        {
+                                            isProject
+                                                ? (<div className="mt-[-1rem] flex justify-evenly"> {/* Posiciona el botón cerca del final */}
+                                                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Github</button>
+                                                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Deploy</button>
+                                                </div>)
+                                                : (<div className="mt-[-1rem] flex justify-end  "> {/* Posiciona el botón cerca del final */}
+                                                    <button disabled className=" bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Read</button>
+                                                </div>)
+                                        }
                                     </div>
                                 </div>
                             </CarouselItem>
