@@ -1,6 +1,6 @@
 'use client'
 import { CSSProperties, useEffect } from "react";
-import { renderToStaticMarkup } from 'next/dist/compiled/react-dom/cjs/react-dom-server-legacy.browser.development';
+import ReactDOMServer from 'next/dist/compiled/react-dom/cjs/react-dom-server-legacy.browser.development';
 
 type Props = {
     color: CSSProperties["color"];
@@ -18,7 +18,7 @@ const AnimatedWave: React.FC<Props> = ({ color, ...props }) => {
         </svg>
     );
 
-    const svgAsString = renderToStaticMarkup(wave);
+    const svgAsString = ReactDOMServer.renderToStaticMarkup(wave);
     const encodedWaveSvg = encodeURIComponent(svgAsString);
 
     return (
