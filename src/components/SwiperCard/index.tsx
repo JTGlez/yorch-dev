@@ -46,9 +46,9 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ title, content }) => {
                 className="mySwiper h-[22rem] max-w-[34rem]"
             >
                 {
-                    content.map((item) => {
+                    content.map((item, key) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={key}>
                                 <div className='mx-auto h-[85%] bg-center shadow-lg' >
                                     <img className="mx-auto w-20 h-[9rem] pt-[4rem]" src={item.image} alt="" />
                                     <div className='flex flex-col'>
