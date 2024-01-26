@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import { kaslana, yorch, yorch2 } from "@/image-path";
+import { bronya, kaslana, kaslana3, yorch, yorch2 } from "@/image-path";
 import { motion } from "framer-motion";
 
 // TODO: Componentize this page and change the career path to a timeline
@@ -35,11 +35,11 @@ export default function page() {
                         </p>
                         <div className="flex items-center justify-center pt-2">
                             <Image
-                                src={kaslana}
+                                src={bronya}
                                 alt='Profile'
                                 width={300}
                                 height={300}
-                                className='w-24 h-24 object-cover'
+                                className='w-40 h-40 object-cover rounded-full'
                             />
                         </div>
                     </div>

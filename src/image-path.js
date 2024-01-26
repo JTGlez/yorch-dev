@@ -12,3 +12,5 @@ export { default as efset } from "../public/assets/img/efset.png";
 export { default as yorch } from "../public/assets/img/yorch.jpg";
 export { default as yorch2 } from "../public/assets/img/yorch2.png";
 export { default as kaslana } from "../public/assets/img/kiana-kaslana.gif";
+export { default as kaslana3 } from "../public/assets/img/kaslana3.png";
+export { default as bronya } from "../public/assets/img/bronya.gif";
