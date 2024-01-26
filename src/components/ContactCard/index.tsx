@@ -28,12 +28,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
     }
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full"
-        >
+
             <Card className="w-full">
                 <CardHeader className="grid items-start gap-4 space-y-0">
                     <div className="space-y-3">
@@ -77,7 +72,6 @@ const ContactCard: React.FC<ContactCardProps> = ({ lang }) => {
                     </div>
                 </CardContent>
             </Card>
-        </motion.div>
     )
 }
 

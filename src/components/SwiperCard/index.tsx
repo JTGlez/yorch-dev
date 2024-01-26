@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -11,8 +11,6 @@ import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 import { subtitle } from '../primitives';
-import { motion } from 'framer-motion';
-import { google } from '@/image-path';
 
 interface SwiperCardProps {
     title: string;
@@ -22,12 +20,7 @@ interface SwiperCardProps {
 const SwiperCard: React.FC<SwiperCardProps> = ({ title, content }) => {
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="hidden flex-col gap-4 xl:gap-16 xl:flex h-29"
-        >
+        <div className="hidden flex-col gap-4 xl:gap-16 xl:flex h-29">
             <h1 className={subtitle({ color: 'blue' })}>{title}</h1>
             <Swiper
                 effect={'coverflow'}
@@ -65,7 +58,7 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ title, content }) => {
                     })
                 }
             </Swiper>
-        </motion.div >
+        </div >
     )
 }
 

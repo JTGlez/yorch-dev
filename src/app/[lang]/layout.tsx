@@ -43,12 +43,13 @@ export default function RootLayout({
                         <nav className=''>
                             <Navbar lang={params.lang} />
                         </nav>
-                        <main className="container">
-                            <GoogleCaptchaWrapper>
-                                {children}
-                            </GoogleCaptchaWrapper>
-                            <Toaster />
-                        </main>
+
+                            <main className="container min-h-[85vh]">
+                                <GoogleCaptchaWrapper>
+                                    {children}
+                                </GoogleCaptchaWrapper>
+                                <Toaster />
+                            </main>
 
                         <div className='hidden xl:block' style={{ position: "relative", marginTop: '0rem' }}>
                             <AnimatedWave

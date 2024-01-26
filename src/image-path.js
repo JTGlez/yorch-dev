@@ -9,3 +9,6 @@ export { default as google } from "../public/assets/img/google.png";
 export { default as oracleone } from "../public/assets/img/oracleone.png";
 export { default as scrum } from "../public/assets/img/scrum.png";
 export { default as efset } from "../public/assets/img/efset.png";
+export { default as yorch } from "../public/assets/img/yorch.jpg";
+export { default as yorch2 } from "../public/assets/img/yorch2.png";
+export { default as kaslana } from "../public/assets/img/kiana-kaslana.gif";

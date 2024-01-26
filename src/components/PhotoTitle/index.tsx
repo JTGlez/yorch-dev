@@ -15,12 +15,7 @@ const PhotoTitle: React.FC<PhotoTitleProps> = ({ lang }) => {
     const strings = getLocaleStrings(lang);
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full"
-        >
+
             <div className="flex flex-col xl:flex-row items-center gap-8">
                 <div className="w-50 lg:w-40 xl:w-48 order-first xl:order-first">
                     <Image
@@ -52,8 +47,7 @@ const PhotoTitle: React.FC<PhotoTitleProps> = ({ lang }) => {
                     </div>
                 </div>
             </div>
-        </motion.div>
     )
 }
 
-export default PhotoTitle;
+export default PhotoTitle
